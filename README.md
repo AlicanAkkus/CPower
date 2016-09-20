@@ -1,5 +1,5 @@
 # CPower
-CPower, memory details in your application. 
+CPower, provide a memory statistic for your applications. 
 
 CPower can be print memory details with your selected interval. 
 
