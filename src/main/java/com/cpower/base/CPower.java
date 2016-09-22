@@ -13,8 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CPower extends Thread {
 	private Logger logger = LogManager.getLogger(CPower.class);
 	private static CPower cPower;
-	private boolean serviceUP;
-	private int delay;
+	private volatile boolean serviceUP;//guarantees that any thread that reads a field will see the most recently written value.
+	private int delay = 5;//default will be print memory statistic every 5 minutes
 
 	public CPower() {
 	}
@@ -32,9 +32,11 @@ public class CPower extends Thread {
 			throw new IllegalStateException("CPower don\'t initialized!");
 		}
 
-		this.serviceUP = true;
-		this.delay = delay;
+		if(delay >= 1){
+			this.delay = delay;
+		}
 
+		this.serviceUP = true;
 		start();
 		
 		return this;
