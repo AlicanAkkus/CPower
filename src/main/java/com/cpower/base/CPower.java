@@ -66,7 +66,7 @@ public class CPower extends Thread {
 
 				Thread.sleep(delay*1000);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e, e);
 			}
 		}
 
